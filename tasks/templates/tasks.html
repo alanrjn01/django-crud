@@ -1,0 +1,29 @@
+{%extends 'layout/base.html'%}
+
+<!--
+    si el usuario esta autenticado se carga el contenido de la pagina tasks, de no ser asi
+    se informa con un alert que no se encuentra autenticado y se redirecciona a home
+-->
+
+{%block content%}
+{%if error%}
+<script>alert('ha ocurrido un error')</script>
+{%endif%}
+{%if user.is_authenticated%}
+<h1>{{user}}'s pending tasks</h1>
+<hr>
+{%for task in pending_tasks_from_db%}
+<h2><a href="{{task.id}}">{{task.title}}</a></h2>
+<p>{{task.description}}</p>
+{%if task.important  %} <p>⚠Tarea importante</p> {%else %} {%endif%}
+<hr>
+{%endfor%}
+<h1>{{user}}'s finished tasks</h1>
+<ul>
+    {%for task in finished_tasks_from_db%}
+        <li>{{task.title}}</li>
+    {%endfor%}
+</ul>
+{%endif%}
+
+{%endblock%}

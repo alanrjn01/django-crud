@@ -1,0 +1,38 @@
+{%extends 'layout/base.html'%}
+{%block content%}
+<strong>
+    <h1>Title: {{task.title}}</h1>
+    <p>Description: {{task.description}}</p>
+    <p>Created: {{task.created}}</p>
+    <p>Date-Completed: {{task.datecompleted}}</p>
+    <p>Important: {{task.important}}</p>
+    <p>User-id: {{task.user_id}}</p>
+</strong>
+<hr>
+<h3>Update Task</h3>
+<form action="" method="POST">
+    {%csrf_token%}
+    {{update_form.as_p}}
+    <button>
+        Update task
+    </button>
+</form>
+<!--
+    complete task es un formulario con un boton, al presionarlo se redirecciona a la url de complete_task
+    -> la url de complete task ejecuta la funcion llamada igual que actualiza el dato en la base de datos
+    y posteriormente redireciona a la pagina 'tasks'
+    y se le pasa un segundo valor que es un parametro, el id de la tarea a completar
+-->
+<form action="{%url 'complete_task' task.id%}" method="POST">
+    {%csrf_token%}
+    <button>
+        complete task
+    </button>
+</form>
+<form action="{%url 'delete_task' task.id%}" method="POST">
+    {%csrf_token%}
+    <button>
+        delete task
+    </button>
+</form>
+{%endblock%}

@@ -1,0 +1,14 @@
+{%extends 'layout/base.html'%}
+{%block content%}
+<h2>Login</h2>
+{%if notif%}
+    <script>alert("{{notif}}")</script>
+{%endif%}
+<form action="" method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button>
+        login
+    </button>
+</form>
+{%endblock%}

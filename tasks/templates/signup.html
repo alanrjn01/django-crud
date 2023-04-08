@@ -1,0 +1,17 @@
+{%extends 'layout/base.html'%}
+{%block content%}
+<!--
+    recibo la variable 'notif' si existe muestro un alert con el mensaje y sino
+    renderizo el formulario de sign up
+-->
+    {%if notif%}
+        <script>alert("{{notif}}")</script>
+    {%endif%}
+    <form action="" method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button>
+            Signup
+        </button>
+    </form>
+{%endblock%}

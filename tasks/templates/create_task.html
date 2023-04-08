@@ -1,0 +1,18 @@
+{%extends 'layout/base.html'%}
+{%block content%}
+{%if user.is_authenticated%}
+<h1>create tasks</h1>
+<form action="" method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button>
+        Save Task
+    </button>
+</form>
+{%else%}
+<script>
+alert("Tienes que iniciar sesion para poder visualizar el contenido")
+location.href = "{%url 'home'%}"
+</script>
+{%endif%}
+{%endblock%}

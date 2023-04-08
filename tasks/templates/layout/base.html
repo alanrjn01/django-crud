@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django CRUD</title>
+</head>
+<nav>
+    <ul>
+        <!--
+            usando url names para redireccionar 
+        -->
+        <li><a href="{%url 'home'%}">home</a></li>
+        <!--
+            comprueba si el usuario esta autenticado 'user' es un objeto global que crea django
+        -->
+        {%if user.is_authenticated%}
+            <li><a href="{%url 'tasks'%}">tasks</a></li>
+            <li><a href="{%url 'create_task'%}">create task</a></li>
+            <li><a href="{%url 'logout'%}">logout</a></li>
+        {%else%}
+            <li><a href="{%url 'signup'%}">signup</a></li>
+            <li><a href="{%url 'login'%}">login</a></li>
+        {%endif%}
+    </ul>
+</nav>
+<body>
+    {%block content%}
+    {%endblock%}
+</body>
+</html>
